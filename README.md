@@ -4,7 +4,6 @@ NatlangMatrix
 row = source
 column = target
 
-|   |   |   |   |   |
 |:-:|:-:|:-:|:-:|---|
 | En  |   |   |   |   |
 |   | Es  |   |   |   |
