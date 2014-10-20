@@ -1,0 +1,8 @@
+
+# alignment
+
+*.sa/
+*.fwd_align
+*.rev_align
+*.gdfa
+mira.dev.*/
