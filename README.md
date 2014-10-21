@@ -13,12 +13,12 @@ Blue score on testset
   <tr>
     
     <td><b>En</b></td>
-    <td> - </td>
+    <td> 0.3021 </td>
     <td> - </td>
     <td> - </td>
   </tr>
     <tr>
-    <td> 0.3021 </td>
+    <td> - </td>
     <td><b>Es</b></td>
     <td> - </td>
     <td> - </td>
