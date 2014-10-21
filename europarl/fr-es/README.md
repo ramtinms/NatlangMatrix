@@ -1,5 +1,5 @@
 
 Language Model : gigaword version 1 
 
-Dev :
-Test : 
+Test : newstest2012
+Dev : newstest2011

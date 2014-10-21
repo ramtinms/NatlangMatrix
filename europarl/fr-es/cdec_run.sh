@@ -4,7 +4,7 @@
 
 
 
-Cdec_Path=/cs/natlang-user/ramtin/software/cdec-2013-07-13
+CDEC_PATH=/cs/natlang-user/ramtin/software/cdec-2013-07-13
 
 source_language_name=fr
 target_language_name=es
@@ -60,14 +60,14 @@ target_language_name=es
 
 #extracting grammars for dev and test
 
-python -m cdec.sa.extract -c extract.ini -g dev.grammars -j 3 -z < "dev.lc-tok."$source_language_name"-"$target_language_name > dev.lc-tok.$source_language_name"-"$target_language_name.sgm
-python -m cdec.sa.extract -c extract.ini -g devtest.grammars -j 3 -z < "devtest.lc-tok."$source_language_name"-"$target_language_name > devtest.lc-tok.$source_language_name"-"$target_language_name.sgm
+#python -m cdec.sa.extract -c extract.ini -g dev.grammars -j 3 -z < "dev.lc-tok."$source_language_name"-"$target_language_name > dev.lc-tok.$source_language_name"-"$target_language_name.sgm
+#python -m cdec.sa.extract -c extract.ini -g devtest.grammars -j 3 -z < "devtest.lc-tok."$source_language_name"-"$target_language_name > devtest.lc-tok.$source_language_name"-"$target_language_name.sgm
 
 
 
 # Tunning
 
-#python $CDEC_PATH/training/mira/mira.py -d dev.lc-tok.$source_language_name"-"$target_language_name.sgm -t devtest.lc-tok.$source_language_name"-"$target_language_name.sgm -c cdec.ini -j 6
+python $CDEC_PATH/training/mira/mira.py -d dev.lc-tok.$source_language_name"-"$target_language_name.sgm -t devtest.lc-tok.$source_language_name"-"$target_language_name.sgm -c cdec.ini -j 12
 
 #perl /global/scratch/ramtin/software/cdec/training/dpmert/dpmert.pl -d dev.lc-tok.$source_language_name"-"$target_language_name.sgm -w initweight.ini -c cdec.ini
 
