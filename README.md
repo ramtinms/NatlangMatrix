@@ -3,7 +3,7 @@ NatlangMatrix
 
 
 
-Blue score on testset
+BLEU score on testset
 <table>
   <tr>
     <td rowspan="5" align="center"><b>Source</b></td>
