@@ -5,33 +5,33 @@ NatlangMatrix
 
 <table>
   <tr>
-    <td rowspan="5" align="center">source</td>
-    <td colspan="4" align="center">target</td>
+    <td rowspan="5" align="center"><b>Source</b></td>
+    <td colspan="4" align="center"><b>Target</b></td>
     
   </tr>
   <tr>
     
-    <td>En</td>
+    <td><b>En</b></td>
     <td> - </td>
     <td> - </td>
     <td> - </td>
   </tr>
     <tr>
     <td> - </td>
-    <td>Es</td>
+    <td><b>Es</b></td>
     <td> - </td>
     <td> - </td>
   </tr>
     <tr>
     <td> - </td>
     <td>0.3387</td>
-    <td>Fr</td>
+    <td><b>Fr</b></td>
     <td> - </td>
   </tr>
     <tr>
     <td> - </td>
     <td> - </td>
     <td> - </td>
-    <td>De</td>
+    <td><b>De</b></td>
   </tr>
 </table>
