@@ -3,6 +3,7 @@ NatlangMatrix
 
 
 
+Blue score on testset
 <table>
   <tr>
     <td rowspan="5" align="center"><b>Source</b></td>
@@ -17,7 +18,7 @@ NatlangMatrix
     <td> - </td>
   </tr>
     <tr>
-    <td> - </td>
+    <td> 0.3021 </td>
     <td><b>Es</b></td>
     <td> - </td>
     <td> - </td>
