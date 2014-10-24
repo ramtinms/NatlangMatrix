@@ -13,7 +13,7 @@ BLEU score on testset
   <tr>
     
     <td><b>En</b></td>
-    <td> 0.3021 </td>
+    <td> 30.21 </td>
     <td> - </td>
     <td> - </td>
   </tr>
@@ -25,7 +25,7 @@ BLEU score on testset
   </tr>
     <tr>
     <td> - </td>
-    <td>0.3387</td>
+    <td>33.87</td>
     <td><b>Fr</b></td>
     <td> - </td>
   </tr>
