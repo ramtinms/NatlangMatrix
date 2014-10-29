@@ -31,7 +31,7 @@ BLEU score on testset
   </tr>
     <tr>
     <td> - </td>
-    <td> - </td>
+    <td> 21.86 </td>
     <td> - </td>
     <td><b>De</b></td>
   </tr>
