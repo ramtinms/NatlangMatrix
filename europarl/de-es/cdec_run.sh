@@ -1,0 +1,87 @@
+#! /bin/bash
+# we have cdec path in Cdec_Path
+# and data path in Data_Path
+
+
+
+Cdec_Path=/cs/natlang-user/ramtin/software/cdec-2013-07-13
+
+source_language_name=de
+target_language_name=es
+
+#Train_file_name=OpenSubtitles2013.en-es
+#Test_file_name=devtest
+#Dev_file_name=dev
+
+#Paste parallel files together
+#$Cdec_Path/corpus/paste-files.pl $Data_Path/$Train_file_name.$source_language_name $Data_Path/$Train_file_name.$target_language_name > $Data_Path"/training_"$source_language_name"_"$target_language_name
+
+##Preprocessing 
+
+Train_file_path=/cs/natlang-data/Tasks/MT/Parallel_Corpora/de-es/
+Train_file_name=europarl.v7
+
+#$source_language_name-$target_language_name
+
+#lc.tok.norm
+
+#$Cdec_Path/corpus/tokenize-anything.sh < $Train_file_path/$Train_file_name"."$source_language_name"-"$target_language_name | $Cdec_Path/corpus/lowercase.pl > $Train_file_path/$Train_file_name".lc.tok."$source_language_name"-"$target_language_name
+
+$Cdec_Path/corpus/tokenize-anything.sh < "dev."$source_language_name"-"$target_language_name | $Cdec_Path/corpus/lowercase.pl > dev.lc-tok.$source_language_name"-"$target_language_name
+$Cdec_Path/corpus/tokenize-anything.sh < "devtest."$source_language_name"-"$target_language_name | $Cdec_Path/corpus/lowercase.pl > devtest.lc-tok.$source_language_name"-"$target_language_name
+
+
+#$Cdec_Path/corpus/tokenize-anything.sh < "training_"$source_language_name"_"$target_language_name | $Cdec_Path/corpus/lowercase.pl > nc.lc-tok.$source_language_name"-"$target_language_name
+#$Cdec_Path/corpus/tokenize-anything.sh < "dev_"$source_language_name"_"$target_language_name | $Cdec_Path/corpus/lowercase.pl > dev.lc-tok.$source_language_name"-"$target_language_name
+#$Cdec_Path/corpus/tokenize-anything.sh < "devtest_"$source_language_name"_"$target_language_name | $Cdec_Path/corpus/lowercase.pl > devtest.lc-tok.$source_language_name"-"$target_language_name
+
+#filtering 
+# max line lenght 80 
+#echo "filtering \n" > log.log
+
+#$Cdec_Path/corpus/filter-length.pl -80 $Train_file_path/$Train_file_name".lc.tok."$source_language_name"-"$target_language_name > $Train_file_path/$Train_file_name".lc.tok.norm."$source_language_name"-"$target_language_name 
+
+
+# bidirectional word alignments
+#echo "bidirectional word alignment" > log.log
+#$Cdec_Path/word-aligner/fast_align -i training.$source_language_name"-"$target_language_name -d -v -o > training.$source_language_name"-"$target_language_name.fwd_align
+#$Cdec_Path/word-aligner/fast_align -i training.$source_language_name"-"$target_language_name -d -v -o -r > training.$source_language_name"-"$target_language_name.rev_align
+
+
+# Symmetrize word alignments
+
+#$Cdec_Path/utils/atools -i training.$source_language_name"-"$target_language_name.fwd_align -j training.$source_language_name"-"$target_language_name.rev_align -c grow-diag-final-and > training.gdfa
+
+
+
+# compile the training data
+
+#python -m cdec.sa.compile -b training.$source_language_name"-"$target_language_name -a training.gdfa -c extract.ini -o training.sa
+
+
+# Language modeling
+
+#$Cdec_Path/corpus/cut-corpus.pl 2 training.$source_language_name"-"$target_language_name > input_temp_lang
+#$Cdec_Path/klm/lm/builder/builder --order 3 <input_temp_lang > nc.lm
+
+#ngram-count -order 3 -text input_temp_lang -lm nc.lm
+#$Cdec_Path/klm/lm/build_binary nc.lm nc.klm
+
+
+#extracting grammars for dev and test
+
+python -m cdec.sa.extract -c extract.ini -g dev.grammars -j 12 -z < "dev.lc-tok."$source_language_name"-"$target_language_name > dev.lc-tok.$source_language_name"-"$target_language_name.sgm
+python -m cdec.sa.extract -c extract.ini -g devtest.grammars -j 12 -z < "devtest.lc-tok."$source_language_name"-"$target_language_name > devtest.lc-tok.$source_language_name"-"$target_language_name.sgm
+
+
+
+# Tunning
+
+python $Cdec_Path/training/mira/mira.py -d dev.lc-tok.$source_language_name"-"$target_language_name.sgm -t devtest.lc-tok.$source_language_name"-"$target_language_name.sgm -c cdec.ini -j 6
+
+#perl /global/scratch/ramtin/software/cdec/training/dpmert/dpmert.pl -d dev.lc-tok.$source_language_name"-"$target_language_name.sgm -w initweight.ini -c cdec.ini
+
+
+
+
+

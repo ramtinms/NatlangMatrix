@@ -1,6 +1,8 @@
 
 # alignment
 
+*_under/
+*_under
 *.sa/
 *.fwd_align
 *.rev_align
